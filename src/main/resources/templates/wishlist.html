@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - BeanBuddies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fa;
+        }
+        .navbar-custom {
+            background-color: #1c1d1f;
+            padding: 15px 30px;
+        }
+        .navbar-brand {
+            color: white !important;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
+        .wishlist-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .wishlist-card {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #d1d7dc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        .wishlist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .wishlist-course-img {
+            width: 120px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 20px;
+        }
+        .wishlist-course-info {
+            flex-grow: 1;
+        }
+        .wishlist-course-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #1c1d1f;
+        }
+        .wishlist-course-instructor {
+            color: #6a6f73;
+            font-size: 14px;
+        }
+        .wishlist-actions .btn {
+            margin-left: 10px;
+        }
+        body.dark-mode {
+            background-color: #1c1d1f;
+            color: #f7f9fa;
+        }
+        .dark-mode .wishlist-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+        }
+        .dark-mode .wishlist-card {
+            background-color: #2d2f31;
+            border-color: #3e4143;
+        }
+        .dark-mode .wishlist-course-title {
+            color: #f7f9fa;
+        }
+        .dark-mode .wishlist-course-instructor {
+            color: #d1d7dc;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">BeanBuddies</a>
+            <div class="ms-auto">
+                <a href="/wishlist" class="btn btn-outline-light">My Wishlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="wishlist-header">
+            <h1>My Wishlist</h1>
+            <p>Your curated list of courses to conquer.</p>
+        </div>
+
+        <div th:if="${wishlist.isEmpty()}" class="text-center">
+            <h3>Your wishlist is empty.</h3>
+            <p>Explore courses and add them to your wishlist!</p>
+            <a href="/" class="btn btn-primary">Browse Courses</a>
+        </div>
+
+        <div th:unless="${wishlist.isEmpty()}">
+            <div th:each="course : ${wishlist}" class="wishlist-card">
+                <img th:src="${course.imageUrl}" alt="Course Image" class="wishlist-course-img">
+                <div class="wishlist-course-info">
+                    <h5 class="wishlist-course-title" th:text="${course.title}"></h5>
+                    <p class="wishlist-course-instructor" th:text="${course.instructor}"></p>
+                </div>
+                <div class="wishlist-actions">
+                    <a th:href="'/course/' + ${course.id}" class="btn btn-primary">View Course</a>
+                    <form th:action="@{/wishlist/remove}" method="post" class="d-inline">
+                        <input type="hidden" name="courseId" th:value="${course.id}" />
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

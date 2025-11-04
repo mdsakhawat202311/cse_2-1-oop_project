@@ -36,6 +36,7 @@
                 <!-- Filter Bar -->
                 <HBox spacing="15.0" alignment="CENTER_LEFT">
                     <Label text="Filter by:" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+                    <ComboBox fx:id="categoryFilter" promptText="Category" prefWidth="180.0" />
                     <ComboBox fx:id="levelFilter" promptText="Level" prefWidth="150.0" />
                     <ComboBox fx:id="priceFilter" promptText="Price" prefWidth="150.0" />
                     <Button text="Clear Filters" onAction="#clearFilters" />
@@ -59,4 +60,3 @@
         </HBox>
     </bottom>
 </BorderPane>
-

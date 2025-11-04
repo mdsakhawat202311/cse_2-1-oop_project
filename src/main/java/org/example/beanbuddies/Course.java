@@ -1,6 +1,7 @@
 package org.example.beanbuddies;
 
 public class Course {
+    private Long id;
     private String title;
     private String instructor;
     private String duration;
@@ -11,21 +12,14 @@ public class Course {
     private double price;
     private double rating;
     private int enrollments;
+    private String category;
+    private String instructorImageUrl;
 
-    public Course(String title, String instructor, String duration, String level, String description, String imageUrl, String previewUrl) {
-        this.title = title;
-        this.instructor = instructor;
-        this.duration = duration;
-        this.level = level;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.previewUrl = previewUrl;
-        this.price = 0.0;
-        this.rating = 0.0;
-        this.enrollments = 0;
+    public Course() {
     }
 
-    public Course(String title, String instructor, String duration, String level, String description, String imageUrl, String previewUrl, double price, double rating, int enrollments) {
+    public Course(Long id, String title, String instructor, String duration, String level, String description, String imageUrl, String previewUrl, double price, double rating, int enrollments, String category, String instructorImageUrl) {
+        this.id = id;
         this.title = title;
         this.instructor = instructor;
         this.duration = duration;
@@ -36,9 +30,13 @@ public class Course {
         this.price = price;
         this.rating = rating;
         this.enrollments = enrollments;
+        this.category = category;
+        this.instructorImageUrl = instructorImageUrl;
     }
 
-    // getters & setters
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public String getInstructor() { return instructor; }
@@ -59,6 +57,10 @@ public class Course {
     public void setRating(double rating) { this.rating = rating; }
     public int getEnrollments() { return enrollments; }
     public void setEnrollments(int enrollments) { this.enrollments = enrollments; }
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+    public String getInstructorImageUrl() { return instructorImageUrl; }
+    public void setInstructorImageUrl(String instructorImageUrl) { this.instructorImageUrl = instructorImageUrl; }
 
     @Override
     public String toString() {
