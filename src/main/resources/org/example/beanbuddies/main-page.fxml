@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.beanbuddies.MainPageController" stylesheets="@styles.css">
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #1c1d1f; -fx-padding: 12px 24px;">
+            <Label text="BeanBuddies" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchField" promptText="Search for courses..." prefWidth="300.0" />
+            <Button fx:id="loginBtn" text="Log In" onAction="#showLoginDialog" styleClass="btn-outline" />
+            <Button fx:id="signupBtn" text="Sign Up" onAction="#showSignupDialog" styleClass="btn-primary" />
+            <Button fx:id="myCoursesBtn" text="My Courses" onAction="#openDashboard" visible="false" managed="false" styleClass="btn-secondary" />
+            <Label fx:id="userLabel" text="" style="-fx-text-fill: white;" visible="false" managed="false" />
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
+            <VBox spacing="30.0">
+                <padding>
+                    <Insets top="30.0" right="40.0" bottom="30.0" left="40.0"/>
+                </padding>
+
+                <!-- Hero Section -->
+                <VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #f7f9fa; -fx-padding: 40px;">
+                    <Label text="Learn Without Limits" style="-fx-font-size: 42px; -fx-font-weight: bold;" />
+                    <Label text="Start, switch, or advance your career with thousands of courses, certificates, and degrees"
+                           style="-fx-font-size: 16px; -fx-text-fill: #6a6f73;" wrapText="true" maxWidth="700" />
+                </VBox>
+
+                <!-- Filter Bar -->
+                <HBox spacing="15.0" alignment="CENTER_LEFT">
+                    <Label text="Filter by:" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+                    <ComboBox fx:id="levelFilter" promptText="Level" prefWidth="150.0" />
+                    <ComboBox fx:id="priceFilter" promptText="Price" prefWidth="150.0" />
+                    <Button text="Clear Filters" onAction="#clearFilters" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="courseCountLabel" text="12 courses" style="-fx-font-size: 14px; -fx-text-fill: #6a6f73;" />
+                </HBox>
+
+                <!-- Courses Grid -->
+                <GridPane fx:id="coursesGrid" hgap="20.0" vgap="20.0" />
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #1c1d1f; -fx-padding: 20px;">
+            <Label text="© 2025 BeanBuddies, Inc." style="-fx-text-fill: white;" />
+            <Label text="Terms" style="-fx-text-fill: #c0c4c7;" />
+            <Label text="Privacy Policy" style="-fx-text-fill: #c0c4c7;" />
+        </HBox>
+    </bottom>
+</BorderPane>
+
